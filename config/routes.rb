@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get 'agus/name'
-  get 'agus/age'
-  get 'samurai', to: 'agus#name'
-  get 'static_pages/home'
-  get 'static_pages/help'
-  root 'application#hello'
+  get 'product/new'
+  get 'product/new', to: 'product#new'
+  post 'product/new', to: 'product#new_post'
+  get 'product/list', to: 'product#list'
+  root 'product#list'
 end
