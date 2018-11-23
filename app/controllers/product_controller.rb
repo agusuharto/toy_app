@@ -24,4 +24,22 @@ class ProductController < ApplicationController
   def list
     render :json => Product.all
   end
+
+  def find_barcode_id
+      results = Product.find_by(barcode_id: params[:id])
+      if results == nil
+        render :json => []
+      else
+        render :json => results
+      end
+  end
+  
+  def find_name
+      results = Product.find_by(name: params[:name])
+      if results == nil
+        render :json => []
+      else
+        render :json => results
+      end
+  end
 end
