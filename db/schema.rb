@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_231334) do
+ActiveRecord::Schema.define(version: 2018_12_08_235319) do
 
   create_table "products", force: :cascade do |t|
     t.integer "barcode_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_11_16_231334) do
     t.string "bool"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
 end
