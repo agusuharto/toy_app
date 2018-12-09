@@ -15,7 +15,13 @@ class ProductController < ApplicationController
     puts '@@@@'
 
     product = Product.new
-    product.attributes = {barcode_id: json_request['barcode_id'], name: json_request['name'], price: json_request['price'], ingredients: json_request['ingredients'], is_halal: json_request['is_halal']}
+    product.attributes = {
+      barcode_id: json_request['barcode_id'],
+      name: json_request['name'],
+      price: json_request['price'],
+      ingredients: json_request['ingredients'],
+      is_halal: json_request['is_halal'],
+      image_url: json_request['image_url']}
     product.save
     result = {is_success: true}
     render :json => result
@@ -33,7 +39,7 @@ class ProductController < ApplicationController
         render :json => results
       end
   end
-  
+
   def find_name
       results = Product.find_by(name: params[:name])
       if results == nil
