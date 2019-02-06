@@ -1,4 +1,5 @@
 ActiveAdmin.register Product do
+  permit_params :name, :price, :ingredients, :string, :is_halal, :bool, :image_url
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -11,7 +12,5 @@ ActiveAdmin.register Product do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-# ActiveAdmin.register Post do
-#  permit_params :title, :content, :name
-# end
+
 end
