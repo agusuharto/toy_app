@@ -8,31 +8,32 @@ class ProductController < ApplicationController
   end
 
   def new_post
-    json_request = JSON.parse(request.body.read)
-
-    puts '@@@@'
-    puts json_request
-    puts '@@@@'
-
-    product = Product.new
-    product.attributes = {
-      barcode_id: json_request['barcode_id'],
-      name: json_request['name'],
-      price: json_request['price'],
-      ingredients: json_request['ingredients'],
-      is_halal: json_request['is_halal'],
-      image_url: json_request['image_url']}
-    product.save
-    result = {is_success: true}
-    render :json => result
+    begin
+      json_request = JSON.parse(request.body.read)
+      product = Product.new
+      product.attributes = {
+        barcode: json_request['barcode'],
+        name: json_request['name'],
+        price: json_request['price'],
+        ingredients: json_request['ingredients'],
+        is_haral: json_request['is_halal'],
+        is_public: json_request['is_public'],
+        image_url: json_request['image_url']}
+      product.save
+      result = {is_success: true}
+      render :json => result
+    rescue => error
+      result = {is_success: false}
+      render :json => result
+    end
   end
 
   def list
-    render :json => Product.all
+    render :json => Product.where(is_public: true).order("id DESC").limit(10)
   end
 
-  def find_barcode_id
-      results = Product.find_by(barcode_id: params[:id])
+  def find_barcode
+      results = Product.where(barcode: params[:id]).where(is_public: true).order("id DESC").limit(50)
       if results == nil
         render :json => []
       else
@@ -41,7 +42,7 @@ class ProductController < ApplicationController
   end
 
   def find_name
-      results = Product.find_by(name: params[:name])
+      results = Product.where(name: params[:name]).where(is_public: true).order("id DESC").limit(50)
       if results == nil
         render :json => []
       else
