@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :barcode, :name, :price, :ingredients, :string, :is_halal, :bool, :image_url, :is_public
+  permit_params :barcode, :name, :price, :ingredients, :is_halal, :image_url, :is_public
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
