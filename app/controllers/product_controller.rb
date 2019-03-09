@@ -1,12 +1,4 @@
 class ProductController < ApplicationController
-  def new
-    product = Product.new
-    product.attributes = {barcode_id: 234, name: "ヨーグルト", price:432, ingredients: "乳化剤", is_halal: false}
-    product.save
-    result = {is_success: true}
-    render :json => result
-  end
-
   def new_post
     begin
       json_request = JSON.parse(request.body.read)
@@ -16,7 +8,7 @@ class ProductController < ApplicationController
         name: json_request['name'],
         price: json_request['price'],
         ingredients: json_request['ingredients'],
-        is_haral: json_request['is_halal'],
+        is_halal: json_request['is_halal'],
         is_public: json_request['is_public'],
         image_url: json_request['image_url']}
       product.save
@@ -29,7 +21,7 @@ class ProductController < ApplicationController
   end
 
   def list
-    render :json => Product.where(is_public: true).order("id DESC").limit(10)
+    render :json => Product.where(is_public: true).order("id DESC").limit(50)
   end
 
   def find_barcode
