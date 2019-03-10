@@ -17,6 +17,7 @@ class ProductController < ApplicationController
       result = {is_success: true}
       render :json => result
     rescue => error
+      puts error
       result = {is_success: false}
       render :json => result
     end
