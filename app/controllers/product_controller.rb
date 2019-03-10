@@ -1,4 +1,6 @@
 class ProductController < ApplicationController
+  protect_from_forgery :except => [:new_post]
+
   def new_post
     begin
       json_request = JSON.parse(request.body.read)
